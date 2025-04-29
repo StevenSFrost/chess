@@ -9,7 +9,7 @@ public class PawnMovesCalculator implements PieceMovesCalculator {
         ChessPiece piece = board.getPiece(position);
 
         int [][] possibleCaptures = {{1, 1}, {-1, 1}};
-        int [][] possibleMoves = !(position.getRow() == 1 | position.getRow() == 7) ? new int [][] {{1, 0}} : new int[][] {{1, 0}, {2, 0}}; // allows moving two spaces forward if the piece has not yet moved.
+        int [][] possibleMoves = !(position.getRow() == 1 | position.getRow() == 7) ? new int [][] {{0, 1}} : new int[][] {{0, 1}, {0, 2}}; // allows moving two spaces forward if the piece has not yet moved.
 
         for (int [] move : possibleCaptures) { // Checks the possible diagonal captures and adds them if they are valid and there is an enemy piece.
             ChessPosition moveTo = piece.getTeamColor() == ChessGame.TeamColor.WHITE
