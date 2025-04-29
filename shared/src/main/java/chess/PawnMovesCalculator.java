@@ -24,7 +24,9 @@ public class PawnMovesCalculator implements PieceMovesCalculator {
         }
 
         for (int [] move : possibleMoves) { // Checks the possible directional moves, adding them if there is not an enemy present.
-            ChessPosition moveTo = new ChessPosition(position.getRow() + move[0], position.getColumn() + move[1]);
+            ChessPosition moveTo = piece.getTeamColor() == ChessGame.TeamColor.BLACK
+                    ? new ChessPosition(position.getRow() + move[0], position.getColumn() + move[1])
+                    : new ChessPosition(position.getRow() - move[0], position.getColumn() - move[1]);
             ChessMove possibleMove = new ChessMove(position, moveTo, null);
             if (friendlyPiecePresent(board, possibleMove)) break;
             if (isWithinBounds(possibleMove)) validMoves.add(possibleMove);
