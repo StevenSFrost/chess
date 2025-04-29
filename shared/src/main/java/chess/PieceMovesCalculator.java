@@ -10,6 +10,14 @@ public interface PieceMovesCalculator {
     }
 
     default boolean enemyPiecePresent(ChessBoard board, ChessMove move) {
-        return ( board.getPiece(move.getEndPosition()) != null);
+        return board.getPiece(move.getEndPosition()) != null
+                ? board.getPiece(move.getEndPosition()).getTeamColor() != board.getPiece(move.getStartPosition()).getTeamColor()
+                : false;
+    }
+
+    default boolean friendlyPiecePresent(ChessBoard board, ChessMove move) {
+        return board.getPiece(move.getEndPosition()) != null
+                ? board.getPiece(move.getEndPosition()).getTeamColor() == board.getPiece(move.getStartPosition()).getTeamColor()
+                : false;
     }
 }
